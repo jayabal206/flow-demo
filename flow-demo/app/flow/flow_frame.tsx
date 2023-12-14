@@ -20,15 +20,10 @@ import ReactFlow, {
 } from 'reactflow';
 import 'reactflow/dist/base.css';
 
-// import './flow.module.css';
-
 // import '../tailwind.config.js';
 import FlowTextNode from './flow_textnode';
 import FlowSidebarLeft from './flow_sidebar_left';
 import FlowSidebarRight from './flow_sidebar_right';
-
-// Key for local storage
-const flowKey = 'flow-key';
 
 const list = [
   { id: 1, name: 'restaurant', type: 'String' },
@@ -108,65 +103,6 @@ const FlowFrame = () => {
     []
   );
 
-  // Setup viewport
-  const { setViewport } = useReactFlow();
-
-  // Check for empty target handles
-  const checkEmptyTargetHandles = () => {
-    let emptyTargetHandles = 0;
-    edges.forEach((edge) => {
-      if (!edge.targetHandle) {
-        emptyTargetHandles++;
-      }
-    });
-    return emptyTargetHandles;
-  };
-
-  // Check if any node is unconnected
-  const isNodeUnconnected = useCallback(() => {
-    let unconnectedNodes = nodes.filter(
-      (node) =>
-        !edges.find(
-          (edge) => edge.source === node.id || edge.target === node.id
-        )
-    );
-
-    return unconnectedNodes.length > 0;
-  }, [nodes, edges]);
-
-  // Save flow to local storage
-  const onSave = useCallback(() => {
-    if (reactFlowInstance) {
-      const emptyTargetHandles = checkEmptyTargetHandles();
-
-      if (nodes.length > 1 && (emptyTargetHandles > 1 || isNodeUnconnected())) {
-        alert(
-          'Error: More than one node has an empty target handle or there are unconnected nodes.'
-        );
-      } else {
-        const flow = reactFlowInstance['toObject()'];
-        localStorage.setItem(flowKey, JSON.stringify(flow));
-        alert('Save successful!'); // Provide feedback when save is successful
-      }
-    }
-  }, [reactFlowInstance, nodes, isNodeUnconnected]);
-
-  // Restore flow from local storage
-  const onRestore = useCallback(() => {
-    const restoreFlow = async () => {
-      const flow = JSON.parse(localStorage['getItem(flowKey)']);
-
-      if (flow) {
-        const { x = 0, y = 0, zoom = 1 } = flow.viewport;
-        setNodes(flow.nodes || []);
-        setEdges(flow.edges || []);
-        setViewport({ x, y, zoom });
-      }
-    };
-
-    restoreFlow();
-  }, [setNodes, setViewport]);
-
   // Handle edge connection
   const onConnect = useCallback(
     (params: Connection | Edge) => {
@@ -213,7 +149,6 @@ const FlowFrame = () => {
         id: getId(),
         type,
         position,
-        // data: { label: `${type}` },
         data: { label: 'mergent', list },
       };
 
