@@ -1,0 +1,17 @@
+{
+    "header":{
+        "message": "Welcom to our website"
+    },
+    "home": {
+        "body": "A website is designed for your"
+    },
+    "login": {
+        "header": "Login Form",
+        "email": "Email",
+        "password": "Password",
+        "forget_password": "Forget Password",
+        "remember_me":"Remember Me",
+        "signin": "Sign in"
+    }
+
+}

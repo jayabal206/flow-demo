@@ -1,0 +1,19 @@
+.submenu__block {
+  //   background: white;
+  transition: all 0.5s;
+  &.show {
+    transform: translateX(0);
+    width: 100%;
+  }
+  &.hide {
+    transform: translateX(-2000px);
+    width: 0;
+  }
+  &.hide-r {
+    transform: translateX(2000px);
+    width: 0;
+  }
+}
+.z-99 {
+  z-index: 99;
+}
