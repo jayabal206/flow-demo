@@ -1,0 +1,16 @@
+{
+    "header":{
+        "message": "Welcom to our website es"
+    },
+    "home": {
+        "body": "A website is designed for your es"
+    },
+    "login": {
+        "header": "نموذج تسجيل الدخول",
+        "email": "بريد إلكتروني",
+        "password": "كلمة المرور",
+        "forget_password": "نسيت كلمة المرور",
+        "remember_me":"تذكرنى",
+        "signin": "تسجيل الدخول"
+    }
+}
